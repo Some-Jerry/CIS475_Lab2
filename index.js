@@ -269,6 +269,33 @@ app.get("/display", function(req, res) {
   });
   });
 
+  // --- UPDATE --- //
+
+  app.get("/update", function (req, res) {
+    res.render("update");
+  });
+
+  app.post("/updatemaj", function(req, res) {
+
+    var params = [req.body.std_newName_ID, req.body.std_newDID, req.body.std_newname, req.body.std_newcredit, req.body.std_oldName_ID, req.body.std_oldDID, req.body.std_oldname, req.body.std_oldcredit];
+
+    var q = "UPDATE major SET Name_ID = ?, D_ID = ?, Full_Name = ?, req_credit = ? WHERE (Name_ID = ? AND D_ID = ? AND Full_Name = ? AND req_credit = ?)";
+    var success = true;
+  
+    con.query(q, params, function(error, results) {
+    if (error) {
+      console.error(error);
+    }
+    
+    console.log(results);
+
+    if (results.affectedRows == 0) success = false;
+  
+    if (success) res.redirect("/querysuccess"); // redirect to success page
+    else res.redirect("/queryfailure"); // redirect to error page, query failed
+  });
+  });
+
   // --- MISC --- //
   app.get("/querysuccess", function (req, res) {
     res.render("querysuccess");

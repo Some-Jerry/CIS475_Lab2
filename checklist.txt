@@ -3,6 +3,8 @@ foreign key constraints must be met otherwise you will get a query failure)
 
 Read - Done, display all
 
-Update
+Update - Done, update a major based on all fields
 
-Delete - doing delete an advisor to avoid constraints
+Delete - done, needs tested
+
+Need to test all functions + take a screencap of testing them all
