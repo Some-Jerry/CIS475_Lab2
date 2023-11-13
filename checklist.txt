@@ -1,0 +1,8 @@
+Create - done, create any entry in any table (all data must be filled, and
+foreign key constraints must be met otherwise you will get a query failure)
+
+Read - Done, display all
+
+Update
+
+Delete - doing delete an advisor to avoid constraints

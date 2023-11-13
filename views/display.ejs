@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Data</title>
+    <style>
+        h1 {
+            background-color: aquamarine;
+        }
+        table {
+            border: 0;
+        }
+        th {
+            text-align: left;
+            background-color: rgb(171, 154, 188);
+        }
+        tr:nth-child(odd) {
+            background-color: rgb(231, 226, 237);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Display Data</h1>
+
+    <h2>Department Table</h2>
+    <table>
+        <tr>
+            <th>D_ID</th>
+            <th>Department_chair</th>
+            <th>building</th>
+            <th>budget</th>
+        </tr>
+        <% departmentData.forEach(function(row) { %>
+            <tr>
+                <td><%= row.D_ID %></td>
+                <td><%= row.Department_chair %></td>
+                <td><%= row.building %></td>
+                <td><%= row.budget %></td>
+            </tr>
+        <% }); %>
+    </table>
+
+    <h2>Student Table</h2>
+    <table>
+        <tr>
+            <th>S_ID</th>
+            <th>Name</th>
+            <th>tot_credits/th>
+            <th>M_ID</th>
+        </tr>
+        <% studentData.forEach(function(row) { %>
+            <tr>
+                <td><%= row.S_ID %></td>
+                <td><%= row.Name %></td>
+                <td><%= row.tot_credits %></td>
+                <td><%= row.M_ID %></td>
+            </tr>
+        <% }); %>
+    </table>
+
+    <h2>Professor Table</h2>
+    <table>
+        <tr>
+            <th>P_ID</th>
+            <th>D_ID</th>
+            <th>Name</th>
+            <th>Type</th>
+        </tr>
+        <% professorData.forEach(function(row) { %>
+            <tr>
+                <td><%= row.P_ID %></td>
+                <td><%= row.D_ID %></td>
+                <td><%= row.Name %></td>
+                <td><%= row.Type %></td>
+            </tr>
+        <% }); %>
+    </table>
+
+    <h2>Advisor Table</h2>
+    <table>
+        <tr>
+            <th>A_ID</th>
+            <th>S_ID</th>
+            <th>P_ID</th>
+            <th>Semester</th>
+        </tr>
+        <% advisorData.forEach(function(row) { %>
+            <tr>
+                <td><%= row.A_ID %></td>
+                <td><%= row.S_ID %></td>
+                <td><%= row.P_ID %></td>
+                <td><%= row.Semester %></td>
+            </tr>
+        <% }); %>
+        
+    </table>
+
+    <h2>Major Table</h2>
+    <table>
+        <tr>
+            <th>Name_ID</th>
+            <th>D_ID</th>
+            <th>Full_Name</th>
+            <th>req_credit</th>
+        </tr>
+        <% majorData.forEach(function(row) { %>
+            <tr>
+                <td><%= row.Name_ID %></td>
+                <td><%= row.D_ID %></td>
+                <td><%= row.Full_Name %></td>
+                <td><%= row.req_credit %></td>
+            </tr>
+        <% }); %>
+        
+    </table>
+
+</body>
+</html>

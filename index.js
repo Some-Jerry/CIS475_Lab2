@@ -30,6 +30,34 @@
  app.get("/menu", function (req, res) {
    res.render("menu", { name: req.body.std_name, id: req.body.std_id });
  });
+// --- DISPLAY --- //
+app.get("/display", function(req, res) {
+
+
+  var q1 = "select * from department;";
+  con.query(q1, function(error, departmentResult) {
+  if (error) throw error;
+
+  var q2 = "select * from student;";
+  con.query(q2, function(error, studentResult) {
+  if (error) throw error;
+
+  var q3 = "select * from professor;";
+  con.query(q3, function(error, professorResult) {
+  if (error) throw error;
+
+  var q4 = "select * from advisor;";
+  con.query(q4, function(error, advisorResult) {
+  if (error) throw error;
+
+  var q4 = "select * from major;";
+  con.query(q4, function(error, majorResult) {
+  if (error) throw error;
+
+  res.render("display", { studentData: studentResult, departmentData: departmentResult, advisorData: advisorResult, professorData: professorResult, majorData: majorResult});
+  
+});});});});});
+});
 
  // --- CREATE --- //
  app.get("/create", function (req, res) {
@@ -67,6 +95,172 @@
     if (error) throw err;
     
     if (results.affectedRows != 0) success = true;
+  
+    console.log(results);
+  
+    if (success) res.redirect("/querysuccess"); // redirect to success page
+    else res.redirect("/queryfailure"); // redirect to error page, query failed
+  });
+  });
+
+  app.post("/insertdept", function(req, res) {
+
+    var params = { D_ID: req.body.std-DID, Department_chair: req.body.std_chair, building: req.body.std_building, budget: req.body.std_budget};
+    var q = "INSERT INTO department SET ?";
+    var success = false;
+  
+    con.query(q, params, function(error, results) {
+    if (error) throw err;
+    
+    if (results.affectedRows != 0) success = true;
+  
+    console.log(results);
+  
+    if (success) res.redirect("/querysuccess"); // redirect to success page
+    else res.redirect("/queryfailure"); // redirect to error page, query failed
+  });
+  });
+
+  app.post("/insertmaj", function(req, res) {
+
+    var params = { Name_ID: req.body.std_NameID, D_ID: req.body.std_DID, Full_Name: req.body.std_name, req_credit: req.body.std_credit};
+    var q = "INSERT INTO major SET ?";
+    var success = false;
+  
+    con.query(q, params, function(error, results) {
+    if (error) throw err;
+    
+    if (results.affectedRows != 0) success = true;
+  
+    console.log(results);
+  
+    if (success) res.redirect("/querysuccess"); // redirect to success page
+    else res.redirect("/queryfailure"); // redirect to error page, query failed
+  });
+  });
+
+  app.post("/insertprof", function(req, res) {
+
+    var params = { P_ID: req.body.std_PID, D_ID: req.body.std_DID, Name: req.body.std_name, Type: req.body.std_type};
+    var q = "INSERT INTO professor SET ?";
+    var success = false;
+  
+    con.query(q, params, function(error, results) {
+    if (error) throw err;
+    
+    if (results.affectedRows != 0) success = true;
+  
+    console.log(results);
+  
+    if (success) res.redirect("/querysuccess"); // redirect to success page
+    else res.redirect("/queryfailure"); // redirect to error page, query failed
+  });
+  });
+
+  app.post("/insertstud", function(req, res) {
+
+    var params = { S_ID: req.body.std_SID , Name: req.body.std_name, tot_credits: req.body.std_credit , M_ID: req.body.std_MID};
+    var q = "INSERT INTO student SET ?";
+    var success = false;
+  
+    con.query(q, params, function(error, results) {
+    if (error) throw err;
+    
+    if (results.affectedRows != 0) success = true;
+  
+    console.log(results);
+  
+    if (success) res.redirect("/querysuccess"); // redirect to success page
+    else res.redirect("/queryfailure"); // redirect to error page, query failed
+  });
+  });
+
+  // --- DELETE --- //
+
+  app.get("/deleteadvisor", function (req, res) {
+    res.render("deleteadvisor");
+  });
+
+  app.get("/deleteadvisorAID", function (req, res) {
+    res.render("deleteadvisorAID");
+  });
+
+  app.get("/deleteadvisorPID", function (req, res) {
+    res.render("deleteadvisorPID");
+  });
+
+  app.get("/deleteadvisorSID", function (req, res) {
+    res.render("deleteadvisorSID");
+  });
+
+  app.get("/deleteadvisorsemester", function (req, res) {
+    res.render("deleteadvisorsemester");
+  });
+
+  app.post("/deleteadvSID", function(req, res) {
+
+    var info = { S_ID: req.body.std_SID};
+    var q = "DELETE FROM advisor WHERE ?";
+    var success = true;
+  
+    con.query(q, info, function(error, results) {
+    if (error) throw err; 
+    
+    if (results.affectedRows == 0) success = false;
+  
+    console.log(results);
+  
+    if (success) res.redirect("/querysuccess"); // redirect to success page
+    else res.redirect("/queryfailure"); // redirect to error page, query failed
+  });
+  });
+
+  app.post("/deleteadvPID", function(req, res) {
+
+    var info = { P_ID: req.body.std_PID};
+    var q = "DELETE FROM advisor WHERE ?";
+    var success = true;
+  
+    con.query(q, info, function(error, results) {
+    if (error) throw err; 
+    
+    if (results.affectedRows == 0) success = false;
+  
+    console.log(results);
+  
+    if (success) res.redirect("/querysuccess"); // redirect to success page
+    else res.redirect("/queryfailure"); // redirect to error page, query failed
+  });
+  });
+
+  app.post("/deleteadvAID", function(req, res) {
+
+    var info = { A_ID: req.body.std_AID};
+    var q = "DELETE FROM advisor WHERE ?";
+    var success = true;
+  
+    con.query(q, info, function(error, results) {
+    if (error) throw err; 
+    
+    if (results.affectedRows == 0) success = false;
+  
+    console.log(results);
+  
+    if (success) res.redirect("/querysuccess"); // redirect to success page
+    else res.redirect("/queryfailure"); // redirect to error page, query failed
+  });
+  });
+
+  app.post("/deleteadvsemester", function(req, res) {
+
+    var info = { Semester: req.body.std_semester};
+    var q = "DELETE FROM advisor WHERE ?";
+    var success = true;
+  
+    con.query(q, info, function(error, results) {
+    if (error) throw err; 
+    
+    if (results.affectedRows == 0) success = false;
   
     console.log(results);
   
