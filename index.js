@@ -91,33 +91,43 @@ app.get("/display", function(req, res) {
     var q = "INSERT INTO advisor SET ?";
     var success = false;
   
+    console.log(params);
+
     con.query(q, params, function(error, results) {
-    if (error) throw err;
-    
-    if (results.affectedRows != 0) success = true;
+      if (error) {
+        console.error(error);
+        success = false;
+      }
   
-    console.log(results);
+      console.log(results);
   
-    if (success) res.redirect("/querysuccess"); // redirect to success page
-    else res.redirect("/queryfailure"); // redirect to error page, query failed
+      if (results && results.affectedRows > 0) {
+        res.redirect("/querysuccess"); // redirect to success page
+      } else {
+        res.redirect("/queryfailure"); // redirect to error page, query failed
+      }
   });
   });
 
   app.post("/insertdept", function(req, res) {
 
-    var params = { D_ID: req.body.std-DID, Department_chair: req.body.std_chair, building: req.body.std_building, budget: req.body.std_budget};
+    var params = { D_ID: req.body.std-DID, Department_chair: req.body.std_chair, building: req.body.std_building, budget: req.body.std_budget, Department_name: req.body.std_dept};
     var q = "INSERT INTO department SET ?";
     var success = false;
   
     con.query(q, params, function(error, results) {
-    if (error) throw err;
-    
-    if (results.affectedRows != 0) success = true;
+      if (error) {
+        console.error(error);
+        success = false;
+      }
   
-    console.log(results);
+      console.log(results);
   
-    if (success) res.redirect("/querysuccess"); // redirect to success page
-    else res.redirect("/queryfailure"); // redirect to error page, query failed
+      if (results && results.affectedRows > 0) {
+        res.redirect("/querysuccess"); // redirect to success page
+      } else {
+        res.redirect("/queryfailure"); // redirect to error page, query failed
+      }
   });
   });
 
@@ -128,14 +138,18 @@ app.get("/display", function(req, res) {
     var success = false;
   
     con.query(q, params, function(error, results) {
-    if (error) throw err;
-    
-    if (results.affectedRows != 0) success = true;
+      if (error) {
+        console.error(error);
+        success = false;
+      }
   
-    console.log(results);
+      console.log(results);
   
-    if (success) res.redirect("/querysuccess"); // redirect to success page
-    else res.redirect("/queryfailure"); // redirect to error page, query failed
+      if (results && results.affectedRows > 0) {
+        res.redirect("/querysuccess"); // redirect to success page
+      } else {
+        res.redirect("/queryfailure"); // redirect to error page, query failed
+      }
   });
   });
 
@@ -144,16 +158,20 @@ app.get("/display", function(req, res) {
     var params = { P_ID: req.body.std_PID, D_ID: req.body.std_DID, Name: req.body.std_name, Type: req.body.std_type};
     var q = "INSERT INTO professor SET ?";
     var success = false;
-  
-    con.query(q, params, function(error, results) {
-    if (error) throw err;
     
-    if (results.affectedRows != 0) success = true;
+    con.query(q, params, function(error, results) {
+      if (error) {
+        console.error(error);
+        success = false;
+      }
   
-    console.log(results);
+      console.log(results);
   
-    if (success) res.redirect("/querysuccess"); // redirect to success page
-    else res.redirect("/queryfailure"); // redirect to error page, query failed
+      if (results && results.affectedRows > 0) {
+        res.redirect("/querysuccess"); // redirect to success page
+      } else {
+        res.redirect("/queryfailure"); // redirect to error page, query failed
+      }
   });
   });
 
@@ -164,14 +182,18 @@ app.get("/display", function(req, res) {
     var success = false;
   
     con.query(q, params, function(error, results) {
-    if (error) throw err;
-    
-    if (results.affectedRows != 0) success = true;
+      if (error) {
+        console.error(error);
+        success = false;
+      }
   
-    console.log(results);
+      console.log(results);
   
-    if (success) res.redirect("/querysuccess"); // redirect to success page
-    else res.redirect("/queryfailure"); // redirect to error page, query failed
+      if (results && results.affectedRows > 0) {
+        res.redirect("/querysuccess"); // redirect to success page
+      } else {
+        res.redirect("/queryfailure"); // redirect to error page, query failed
+      }
   });
   });
 
@@ -204,14 +226,18 @@ app.get("/display", function(req, res) {
     var success = true;
   
     con.query(q, info, function(error, results) {
-    if (error) throw err; 
-    
-    if (results.affectedRows == 0) success = false;
+      if (error) {
+        console.error(error);
+        success = false;
+      }
   
-    console.log(results);
+      console.log(results);
   
-    if (success) res.redirect("/querysuccess"); // redirect to success page
-    else res.redirect("/queryfailure"); // redirect to error page, query failed
+      if (results && results.affectedRows > 0) {
+        res.redirect("/querysuccess"); // redirect to success page
+      } else {
+        res.redirect("/queryfailure"); // redirect to error page, query failed
+      }
   });
   });
 
@@ -222,14 +248,18 @@ app.get("/display", function(req, res) {
     var success = true;
   
     con.query(q, info, function(error, results) {
-    if (error) throw err; 
-    
-    if (results.affectedRows == 0) success = false;
+      if (error) {
+        console.error(error);
+        success = false;
+      }
   
-    console.log(results);
+      console.log(results);
   
-    if (success) res.redirect("/querysuccess"); // redirect to success page
-    else res.redirect("/queryfailure"); // redirect to error page, query failed
+      if (results && results.affectedRows > 0) {
+        res.redirect("/querysuccess"); // redirect to success page
+      } else {
+        res.redirect("/queryfailure"); // redirect to error page, query failed
+      }
   });
   });
 
@@ -240,14 +270,18 @@ app.get("/display", function(req, res) {
     var success = true;
   
     con.query(q, info, function(error, results) {
-    if (error) throw err; 
-    
-    if (results.affectedRows == 0) success = false;
+      if (error) {
+        console.error(error);
+        success = false;
+      }
   
-    console.log(results);
+      console.log(results);
   
-    if (success) res.redirect("/querysuccess"); // redirect to success page
-    else res.redirect("/queryfailure"); // redirect to error page, query failed
+      if (results && results.affectedRows > 0) {
+        res.redirect("/querysuccess"); // redirect to success page
+      } else {
+        res.redirect("/queryfailure"); // redirect to error page, query failed
+      }
   });
   });
 
@@ -258,14 +292,18 @@ app.get("/display", function(req, res) {
     var success = true;
   
     con.query(q, info, function(error, results) {
-    if (error) throw err; 
-    
-    if (results.affectedRows == 0) success = false;
+      if (error) {
+        console.error(error);
+        success = false;
+      }
   
-    console.log(results);
+      console.log(results);
   
-    if (success) res.redirect("/querysuccess"); // redirect to success page
-    else res.redirect("/queryfailure"); // redirect to error page, query failed
+      if (results && results.affectedRows > 0) {
+        res.redirect("/querysuccess"); // redirect to success page
+      } else {
+        res.redirect("/queryfailure"); // redirect to error page, query failed
+      }
   });
   });
 
